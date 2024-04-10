@@ -1,7 +1,7 @@
 #/bin/bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-cp tmux.conf ~/.tmux.conf
+cp tmux-linux.conf ~/.tmux.conf
 
 sudo cp ./tmux-mem-cpu-load /usr/local/bin
 
