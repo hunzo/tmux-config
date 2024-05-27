@@ -1,0 +1,51 @@
+# set -g default-terminal "screen-256color"
+
+
+set -g @plugin 'tmux-plugins/tpm'
+# set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'thewtex/tmux-mem-cpu-load'
+
+set -g default-terminal "xterm-256color"
+
+set-option -g status on
+set-option -g status-interval 1
+set-option -g status-justify left
+set-option -g status-keys vi
+set-option -g status-position bottom
+set-option -g status-style fg=colour136,bg=colour235
+set-option -g status-left-length 100
+set-option -g status-left-style default
+# set-option -g status-left "#[fg=green]#H #[fg=black]• #[fg=green,bright]#(uname -r) #[fg=black]• #[default]"
+set-option -g status-left "#[fg=green]#H #[fg=black]• #[fg=green,bright]#(whoami) #[fg=black]• #[default]"
+set-option -g status-right-length 140
+set-option -g status-right-style default
+set-option -g status-right "#[fg=green,bg=default,bright]#(tmux-mem-cpu-load) "
+
+set-option -ag status-right "#[fg=red,dim,bg=default]#(uptime | cut -f 4-5 -d ' ' | cut -f 1 -d ',') "
+set-option -ag status-right " #[fg=white,bg=default]%a%l:%M:%S %p#[default] #[fg=blue]%Y-%m-%d"
+set-window-option -g window-status-style bg=default
+set-window-option -g window-status-current-style fg=colour166
+set-window-option -g window-status-current-style bg=default
+
+
+# switch pane
+bind -r k select-pane -U
+bind -r j select-pane -D
+bind -r h select-pane -L
+bind -r l select-pane -R
+
+# resize pane
+bind -r C-k resize-pane -U 5
+bind -r C-j resize-pane -D 5
+bind -r C-h resize-pane -L 5
+bind -r C-l resize-pane -R 5
+
+
+set -g mouse on
+set-option -sa terminal-overrides ",xterm*:Tc"
+
+# set vi-mode
+set-window-option -g mode-keys vi
+
+run '~/.tmux/plugins/tpm/tpm'
